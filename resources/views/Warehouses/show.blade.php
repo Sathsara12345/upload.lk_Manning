@@ -1,18 +1,37 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $warehouse->name }} Details
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <p><strong>Warehouse Name:</strong> {{ $warehouse->name }}</p>
-                    <p><strong>Location:</strong> {{ $warehouse->location }}</p>
-                </div>
-            </div>
-        </div>
+@section('content')
+    <div class="container">
+        <h1>Warehouse Details</h1>
+
+        <!-- Table to display warehouse details -->
+        <table class="table-auto border-collapse border border-gray-200 w-full">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 p-2">ID</th>
+                    <th class="border border-gray-300 p-2">Name</th>
+                    <th class="border border-gray-300 p-2">Supplier Code</th>
+                    <th class="border border-gray-300 p-2">Packs</th>
+                    <th class="border border-gray-300 p-2">Item Name</th>
+                    <th class="border border-gray-300 p-2">Lorry No.</th>
+                    <th class="border border-gray-300 p-2">Weight</th>
+                    <th class="border border-gray-300 p-2">Weight Balance</th>
+                    <th class="border border-gray-300 p-2">Total Sales as Per</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->id }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->name }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->supplier_code ?? 'N/A' }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->packs ?? 'N/A' }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->item_name ?? 'N/A' }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->lorry_no ?? 'N/A' }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->weight ?? 'N/A' }}</td>
+                    <td class="border border-gray-300 p-2">{{ $warehouse->weight_balance ?? 'N/A' }}</td>
+                    <td class="border border-gray-300 p-2">${{ $warehouse->total_sales_as_per ?? '0.00' }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</x-app-layout>
+@endsection
