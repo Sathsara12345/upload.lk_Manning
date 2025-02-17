@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\Auth\RegisteredUserController; // Import for RegisteredUserController
+use App\Http\Controllers\Auth\AuthenticatedSessionController; // Import for AuthenticatedSessionController
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/warehouse/{warehouseId}/table', [WarehouseController::class, 'showTable'])->name('warehouse.table');
 });
 
+// Registration routes
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register'); // Using RegisteredUserController
+Route::post('/register', [RegisteredUserController::class, 'store']); // Using RegisteredUserController
+
+// Manually adding the login route
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
+// Optional: Use the default Laravel authentication routes
 require __DIR__.'/auth.php';
