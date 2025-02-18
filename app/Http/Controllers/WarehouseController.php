@@ -58,4 +58,21 @@ public function show($id)
     // Return the view with warehouse data
     return view('warehouses.show', compact('warehouse'));
 }
+public function showWarehouseDetails(Request $request)
+    {
+        // Get the location from the request
+        $location = $request->input('location');
+        
+        // Fetch warehouse data from the database based on location
+        $warehouseDetails = Warehouse::where('location', $location)->first();
+        
+        if ($warehouseDetails) {
+            // Return a view with the warehouse details
+            return view('warehouse.details', compact('warehouseDetails'));
+        } else {
+            // If no warehouse data is found, handle the error
+            return redirect()->back()->with('error', 'Warehouse not found for this location.');
+        }
+    }
+
 }

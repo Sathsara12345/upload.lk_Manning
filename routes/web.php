@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\Auth\RegisteredUserController; // Import for RegisteredUserController
-use App\Http\Controllers\Auth\AuthenticatedSessionController; // Import for AuthenticatedSessionController
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\StockController; // Import for AuthenticatedSessionController
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +33,8 @@ Route::post('/register', [RegisteredUserController::class, 'store']); // Using R
 
 // Manually adding the login route
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
+//sessions
+Route::post('/explore', [StockController::class, 'explore'])->name('explore');
 
 // Optional: Use the default Laravel authentication routes
 require __DIR__.'/auth.php';
